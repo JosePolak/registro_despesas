@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, render_template
 import sqlite3
 from pathlib import Path
 
@@ -48,10 +48,22 @@ def get_db_connection():
 @app.route('/')
 def home():
     conn = get_db_connection()
-    despesas = conn.execute('SELECT * FROM despesas ORDER BY data DESC').fetchall()
+
+    despesas = conn.execute(
+        'SELECT * FROM despesas ORDER BY data DESC'
+    ).fetchall()
+
+    total = conn.execute(
+        'SELECT SUM(valor) FROM despesas'
+    ).fetchone()[0]
+
     conn.close()
 
-    return str(despesas)
+    return render_template(
+        'index.html',
+        despesas = despesas,
+        total = total
+    )
 
 
 @app.route('/nova', methods=['GET', 'POST'])
@@ -82,16 +94,7 @@ def nova_despesa():
         return redirect(url_for('home'))
     
     # GET
-    return '''
-        <h2>Nova Despesa</h2>
-        <form method="post">
-            Data: <input type="date" name="data"><br><br>
-            Descrição: <input type="text" name="descricao"><br><br>
-            Valor: <input type="text" name="valor"><br><br>
-            Categoria: <input type="text" name="categoria"><br><br>
-            <button type="submit">Salvar</button>
-        </form>
-    '''
+    return render_template('nova.html')
 
 
 # Para execução local

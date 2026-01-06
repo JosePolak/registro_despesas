@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Despesas cadastradas</h2>
+
+{% if despesas %}
+<table>
+    <tr>
+        <th>Data</th>
+        <th>Descrição</th>
+        <th>Categoria</th>
+        <th>Valor (R$)</th>
+    </tr>
+
+    {% for d in despesas %}
+    <tr>
+        <td data-label="Data">{{ d.data }}</td>
+        <td data-label="Descrição">{{ d.descricao }}</td>
+        <td data-label="Categoria">{{ d.categoria }}</td>
+        <td data-label="Valor (R$)">R$ {{ "%.2f"|format(d.valor) }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Total geral: R$ {{ "%.2f"|format(total or 0) }}</h3>
+
+{% else %}
+<p>Nenhuma despesa cadastrada.</p>
+{% endif %}
+
+{% endblock %}

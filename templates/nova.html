@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Nova Despesa</h2>
+
+<form method="post">
+    <p>
+        Data:<br>
+        <input type="date" name="data">
+    </p>
+
+    <p>
+        Descrição:<br>
+        <input type="text" name="descricao">
+    </p>
+
+    <p>
+        Valor:<br>
+        <input type="text" name="valor">
+    </p>
+
+    <p>
+        Categoria:<br>
+        <input type="text" name="categoria">
+    </p>
+
+    <button type="submit">Salvar</button>
+</form>
+
+{% endblock %}
