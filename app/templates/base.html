@@ -2,67 +2,10 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registro de Despesas</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 20px;
-            }
-
-            nav a {
-                margin-right: 15px;
-                font-weight: bold;
-            }
-
-            table {
-                border-collapse: collapse;
-                width: 100%;
-                margin-top: 20px;
-            }
-
-            th, td {
-                border: 1px solid #ccc;
-                padding: 8px;
-                text-align: left;
-            }
-
-            th {
-                background-color: #eee;
-            }
-
-            h3 {
-                margin-top: 20px;
-            }
-
-            /* 🟦 RESPONSIVIDADE */
-            @media (max-width: 600px) {
-                table, thead, tbody, th, td, tr {
-                    display: block;
-                }
-
-                thead {
-                    display: none;
-                }
-
-                tr {
-                    margin-bottom: 15px;
-                    border: 1px solid #ccc;
-                    padding: 10px;
-                }
-
-                td {
-                    border: none;
-                    padding: 5px 0;
-                }
-
-                td::before {
-                    content: attr(data-label);
-                    font-weight: bold;
-                    display: block;
-                }
-            }
-        </style>
     </head>
 
     <body>

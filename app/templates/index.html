@@ -19,6 +19,18 @@
         <td data-label="Descrição">{{ d.descricao }}</td>
         <td data-label="Categoria">{{ d.categoria }}</td>
         <td data-label="Valor (R$)">R$ {{ "%.2f"|format(d.valor) }}</td>
+        <td class="actions-cell">
+            <form action="{{ url_for('main.excluir', id=d.id) }}"
+                method="post"
+                class="delete-form">
+
+                <button type="submit"
+                        class="delete-btn"
+                        onclick="return confirm('Excluir esta despesa?')">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </form>
+        </td>
     </tr>
     {% endfor %}
 </table>

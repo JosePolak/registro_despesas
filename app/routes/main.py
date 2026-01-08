@@ -1,5 +1,5 @@
 from flask import Blueprint, request, redirect, url_for, render_template
-from app.services.despesas_service import (listar_despesas, calcular_total, inserir_despesa)
+from app.services.despesas_service import (listar_despesas, calcular_total, inserir_despesa, excluir_despesa)
 
 
 main = Blueprint('main', __name__)
@@ -39,3 +39,9 @@ def nova_despesa():
         return redirect(url_for('main.home'))
     
     return render_template('nova.html')
+
+
+@main.route('/excluir/<int:id>', methods=['POST'])
+def excluir(id):
+    excluir_despesa(id)
+    return redirect(url_for('main.home'))
