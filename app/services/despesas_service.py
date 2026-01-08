@@ -48,3 +48,31 @@ def excluir_despesa(despesa_id):
 
     conn.commit()
     conn.close()
+
+
+def buscar_despesa_por_id(id):
+    conn = get_db_connection()
+
+    despesa = conn.execute(
+        'SELECT * FROM despesas WHERE id = ?',
+        (id,)        
+    ).fetchone()
+
+    conn.close()
+    return despesa
+
+
+def atualizar_despesa(id, data, descricao, valor, categoria):
+    conn = get_db_connection()
+
+    conn.execute(
+        '''
+        UPDATE despesas
+        SET data = ?, descricao = ?, valor = ?, categoria = ?
+        WHERE id = ?
+        ''',
+        (data, descricao, valor, categoria, id)
+    )
+
+    conn.commit()
+    conn.close()

@@ -20,12 +20,19 @@
         <td data-label="Categoria">{{ d.categoria }}</td>
         <td data-label="Valor (R$)">R$ {{ "%.2f"|format(d.valor) }}</td>
         <td class="actions-cell">
+            <a href="{{ url_for('main.editar_despesa', id=d.id) }}"
+            class="action-icon edit-icon"
+            title="Editar">
+                <i class="fa-solid fa-pen"></i>
+            </a>
+
             <form action="{{ url_for('main.excluir', id=d.id) }}"
                 method="post"
                 class="delete-form">
 
                 <button type="submit"
-                        class="delete-btn"
+                        class="action-icon delete-btn"
+                        title="Excluir"
                         onclick="return confirm('Excluir esta despesa?')">
                     <i class="fa-solid fa-trash"></i>
                 </button>
